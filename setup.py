@@ -13,7 +13,7 @@ docker_err = try_pulling_docker_images()
 task_collector_err = TaskCollectorBuilder().build()
 setup(
     name='golem',
-    version=get_golem_version('bdist_wheel' in argv),
+    version=get_version(),
     description='Global, open sourced, decentralized supercomputer',
     long_description=get_long_description(path.abspath(path.dirname(__file__))),
     url='https://golem.network',
@@ -68,3 +68,6 @@ setup(
 )
 
 print_errors(ui_err, docker_err, task_collector_err)
+
+if 'bdist_wheel' in argv:
+    move_wheel()
